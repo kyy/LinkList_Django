@@ -18,17 +18,14 @@
 
 <body>
 <div class="topnav" id="myTopnav">
-    <a href="{% url 'main' %}" class="active">Главная</a>
-    <a href="{% url 'main'  %}">О сайте</a>
-    <a href="{% url 'main'  %}">Спросить</a>
-    <a href="{% url 'main'  %}">Поиск</a>
-    <a href="{% url 'main'  %}">Логин</a>
+    <a href="{% url 'main' %}" class="active">Main</a>
+    <a href="/admin">Admin</a>
+    <a href="{% url 'main'  %}">Login</a>
+    <a href="{% url 'main'  %}">Register</a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
     </a>
 </div>
-
-
         {% block content %}
         {% endblock %}
 </body>
