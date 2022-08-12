@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static "css/base.css" %}" />
-    <link rel="stylesheet" href="{% static "font-awesome-4.7.0/css/font-awesome.css" %}" />
+    <link rel="stylesheet" href="{% static "plugins/font-awesome-4.7.0/css/font-awesome.css" %}" />
 
     <script src={% static "JS/adaptive_nav_menu.js" %}></script>
 
@@ -20,9 +20,9 @@
 <div class="topnav" id="myTopnav">
     <a href="{% url 'main' %}" class="active">Главная</a>
     <a href="{% url 'main'  %}">О сайте</a>
-    <a href="{% url 'main'  %}">Создать таск</a>
+    <a href="{% url 'main'  %}">Спросить</a>
     <a href="{% url 'main'  %}">Поиск</a>
-    <a href="{% url 'main'  %}">Поиск SOLR</a>
+    <a href="{% url 'main'  %}">Логин</a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
     </a>
