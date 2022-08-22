@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     #beautiful forms
     'crispy_forms',
+    "crispy_bootstrap5",
     'widget_tweaks',
     "bootstrap5",
 ]
@@ -195,7 +196,9 @@ JAZZMIN_SETTINGS = {
     "language_chooser": None,
 }
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
