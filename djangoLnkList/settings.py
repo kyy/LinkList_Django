@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 
     #beautiful forms
     'crispy_forms',
-    "crispy_bootstrap5",
+    'crispy_bootstrap5',
     'widget_tweaks',
     "bootstrap5",
 ]
