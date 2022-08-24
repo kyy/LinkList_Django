@@ -5,11 +5,12 @@
 {% block content %}
 
 <h2>Register</h2>
+    <hr>
 
 <form action="{% url 'register' %}" method="post" class="form-control">
   {% csrf_token %}
 
-  {% bootstrap_form form show_help=False %}
+  {% bootstrap_form form show_help=False show_label=False %}
 {#    form_group_class='form-floating' floatin text - input rhen label#}
 
 
