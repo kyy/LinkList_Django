@@ -13,14 +13,6 @@
              You are already logining!
           <a href="{% url 'logout' %}">Logout</a>
     {% else %}
-        <form method="post" class="form-control">
-        {% csrf_token %}
-            <table>
-            {% bootstrap_form form show_help=False show_label=False %}
-                <tr>
-                    <td>&nbsp;</td><td><input type="submit" value="Submit" class="btn btn-primary btn-sm"></td>
-                </tr>
-            </table>
-        </form>
+        {% include 'registration/form_snippet.html' %}
     {% endif %}
 {% endblock %}

@@ -1,0 +1,11 @@
+{% load bootstrap5 %}
+<form action="#" method="post" class="form-control">
+  {% csrf_token %}
+
+  {% bootstrap_form form show_help=False show_label=False%}
+  {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      Submit
+    </button>
+  {% endbuttons %}
+</form>
