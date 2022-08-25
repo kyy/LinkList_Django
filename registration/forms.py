@@ -2,8 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.forms import PasswordInput
-from django.contrib.auth import authenticate
+
 
 
 class MyUserCreationForm(UserCreationForm):
@@ -20,20 +19,22 @@ class MyUserCreationForm(UserCreationForm):
         fields = ("username", "email", "password1", "password2")
 
 class MyAuthenticationForm(AuthenticationForm):
-# checking for username and password in DB:
-    def clean_username_password(self):
-        username = self.cleaned_data.get('username')
-        password = self.cleaned_data.get('password')
+# checking for username  in DB:
+    def clean_username(self):
+        username = self.cleaned_data['username']
         try:
             User.objects.get(username=username)
         except User.DoesNotExist:
-            raise forms.ValidationError("The username you have entered does not exist.")
+            raise forms.ValidationError(f"The {username} is incorrect username.")
+        return username
+# checking for password in DB:
+    def clean_password(self):
+        password= self.cleaned_data['password']
         try:
             User.objects.get(password=password)
         except User.DoesNotExist:
-            raise forms.ValidationError("Password is incorrect")
-        return self.cleaned_data
-
+            raise forms.ValidationError("Password is incorrect.")
+        return password
 
 
 
