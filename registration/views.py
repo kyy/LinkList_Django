@@ -1,4 +1,5 @@
-from .forms import MyUserCreationForm
+from django.contrib.auth.views import LoginView
+from .forms import MyUserCreationForm, MyAuthenticationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.shortcuts import render, redirect
@@ -23,6 +24,20 @@ class SignUp(CreateView):
             form.save()
             return redirect(to="login")
         return render(request, self.template_name, {'form': form})
+
+class LogIn(LoginView):
+    form_class = MyAuthenticationForm
+    initial = {'key': 'value'}
+    success_url = reverse_lazy("home")
+    template_name = "registration/login.html"
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
+
+
+
+
 
 
 
