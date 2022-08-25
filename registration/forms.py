@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 
 
 
+
 class MyUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
 # checking for unique email:
@@ -35,6 +36,5 @@ class MyAuthenticationForm(AuthenticationForm):
         except User.DoesNotExist:
             raise forms.ValidationError("Password is incorrect.")
         return password
-
 
 
