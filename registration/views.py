@@ -1,4 +1,7 @@
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
+from django.core.exceptions import ValidationError
 from .forms import MyUserCreationForm, MyAuthenticationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -34,6 +37,7 @@ class LogIn(LoginView):
     def get(self, request, *args, **kwargs):
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form': form})
+
 
 
 

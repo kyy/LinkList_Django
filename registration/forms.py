@@ -1,8 +1,8 @@
 from django import forms
+from django.contrib.auth import hashers
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-
 
 
 
@@ -28,13 +28,8 @@ class MyAuthenticationForm(AuthenticationForm):
         except User.DoesNotExist:
             raise forms.ValidationError(f"The {username} is incorrect username.")
         return username
-# checking for password in DB:
-    def clean_password(self):
-        password= self.cleaned_data['password']
-        try:
-            User.objects.get(password=password)
-        except User.DoesNotExist:
-            raise forms.ValidationError("Password is incorrect.")
-        return password
+
+
+
 
 
