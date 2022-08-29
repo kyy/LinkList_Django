@@ -4,10 +4,9 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 
-
 class MyUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
-# checking for unique email:
+    # checking for unique email:
     def clean_email(self):
         email = self.cleaned_data['email'].strip()
         if User.objects.filter(email__iexact=email).exists():
@@ -18,8 +17,9 @@ class MyUserCreationForm(UserCreationForm):
         model = User
         fields = ("username", "email", "password1", "password2")
 
+
 class MyAuthenticationForm(AuthenticationForm):
-# checking for username  in DB:
+    # checking for username  in DB:
     def clean_username(self):
         username = self.cleaned_data['username']
         try:
@@ -27,8 +27,5 @@ class MyAuthenticationForm(AuthenticationForm):
         except User.DoesNotExist:
             raise forms.ValidationError(f"The {username} is incorrect username.")
         return username
-
-
-
 
 
