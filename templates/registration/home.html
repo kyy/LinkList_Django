@@ -1,16 +1,6 @@
 {% extends 'link/base.html' %}
 
-<html>
-  <head>
-    <style>
-     body {
-      color: pink;
-      text-align: center;
-      }
-
-    </style>
-  </head>
-  <body>
+ {% block content %}
 
     <h1>Hello, {{ user.username|default:'Guest' }}</h1>
 
@@ -24,5 +14,4 @@
       {% endif %}
   </div>
 
-  </body>
-</html>
+  {% endblock %}
