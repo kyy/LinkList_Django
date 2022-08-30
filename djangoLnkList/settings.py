@@ -302,3 +302,8 @@ if DEBUG:
     EMAIL_HOST_PASSWORD = ''
     EMAIL_USE_TLS = False
     DEFAULT_FROM_EMAIL = 'testing@example.com'
+
+# AUTHENTICATION_BACKENDS = (
+#     'link.backends.CurrentUser',
+#     'django.contrib.auth.backends.ModelBackend',
+# )

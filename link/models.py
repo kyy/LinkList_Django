@@ -4,6 +4,7 @@ from datetime import datetime
 import uuid
 
 
+
 class URL_list(models.Model):
     name = models.CharField(max_length=100)
     URL_long = models.TextField()
