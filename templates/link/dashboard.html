@@ -1,0 +1,21 @@
+{% extends 'link/base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <h1>DASHBOARD</h1>
+
+{% for url in urls %}
+    <tr class='success'>
+         {{ url.user}}------{{ url.name}}------{{ url.URL_short }}------{{ url.data }}<br>
+
+    </tr>
+{% endfor %}
+
+
+
+{% endblock %}
+

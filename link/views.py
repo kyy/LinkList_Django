@@ -19,6 +19,12 @@ def main_page(request):
     return render(request, 'link/main.html', {'form': form})
 
 
+@login_required
+def URL_view(request):
+    urls= URL_list.objects.filter(user=request.user).order_by('-data')
+    return render(request, 'link/dashboard.html', {'urls': urls})
+
+
 
 
 
