@@ -1,6 +1,4 @@
 from django import forms
-from django.core.exceptions import ValidationError
-
 from .models import URL_list
 
 
@@ -11,10 +9,3 @@ class URL_listForm(forms.ModelForm):
     class Meta:
         model = URL_list
         fields = ("name", "URL_long")
-
-
-
-
-
-
-

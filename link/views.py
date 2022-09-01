@@ -1,12 +1,9 @@
-from datetime import timezone
-
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import CreateView
-
 from .forms import URL_listForm
 from .models import URL_list
+
 
 @login_required
 def new_url(request):
@@ -20,13 +17,18 @@ def new_url(request):
             post.user = request.user
             post.save()
             return redirect('dashboard')
-    return render(request, 'link/main.html', {'form': form})
+    return render(request, 'link/main.html', {
+        'form': form,
+    })
 
 
 @login_required
 def view_urls(request):
-    urls= URL_list.objects.filter(user=request.user).order_by('-data')
-    return render(request, 'link/dashboard.html', {'urls': urls})
+    urls = URL_list.objects.filter(user=request.user).order_by('-data')
+    return render(request, 'link/dashboard.html', {
+        'urls': urls,
+    })
+
 
 @login_required
 def edit_url(request, url_short):
@@ -47,9 +49,10 @@ def edit_url(request, url_short):
 
 def show_urls(request, url_short):
     urls = URL_list.objects.filter(URL_short=url_short)
-    return render(request, 'link/showurls.html',{
+    return render(request, 'link/showurls.html', {
         'urls': urls,
     })
+
 
 @login_required
 def delete_url(request, url_short):

@@ -5,7 +5,6 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
 
 
-
 class MyUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
     # checking for unique email:

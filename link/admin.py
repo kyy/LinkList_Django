@@ -9,5 +9,3 @@ class URL_listAdmin(admin.ModelAdmin):
     readonly_fields = ['data', 'URL_short']
     ordering = ['data', 'name']
     list_per_page = 5
-
-

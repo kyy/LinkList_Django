@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 def home(request):
     return render(request, "registration/home.html")
 
+
 class SignUp(CreateView):
     form_class = MyUserCreationForm
     initial = {'key': 'value'}
@@ -23,6 +24,7 @@ class SignUp(CreateView):
             return redirect(to="login")
         return render(request, self.template_name, {'form': form})
 
+
 class LogIn(LoginView):
     form_class = MyAuthenticationForm
     initial = {'key': 'value'}
@@ -31,12 +33,3 @@ class LogIn(LoginView):
     def get(self, request, *args, **kwargs):
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form': form})
-
-
-
-
-
-
-
-
-
