@@ -1,0 +1,28 @@
+{% extends 'link/base.html' %}
+{% load bootstrap5 %}
+
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+
+{% block content %}
+
+
+
+<p>Are you sure you want to delete </p>
+
+       <form action="#" method="post" class="form-control">
+          {% csrf_token %}
+          {% bootstrap_form form formshow_help=False show_label=False size='medium' %}
+          {% buttons %}
+            <button type="submit" class="btn btn-primary">
+              Confirm
+            </button>
+          {% endbuttons %}
+    </form>
+
+
+{% endblock content %}
