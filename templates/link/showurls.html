@@ -12,15 +12,34 @@
 
 
     {{ urls.user }}
-
 <br>
 
-    {% for url in url_dict %}
+
+    <table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for url in url_dict  %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ url|urlize|truncatechars_html:100 }}</td>
+      <td></td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
 
 
-        {{ url }}<br>
 
-    {% endfor %}
+
 
 
 
