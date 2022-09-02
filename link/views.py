@@ -30,14 +30,20 @@ def view_urls(request):
     })
 
 
+def show_urls(request, url_short):
+    urls = URL_list.objects.filter(URL_short=url_short)
+    return render(request, 'link/showurls.html', {
+        'urls': urls,
+    })
+
+
 @login_required
 def edit_url(request, url_short):
-    post = get_object_or_404(URL_list.objects.filter(URL_short=url_short))
+    post = get_object_or_404(URL_list.objects.filter(URL_short=url_short, user=request.user))
     if request.method == "POST":
         form = URL_listForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
-            post.user = request.user
             post.save()
             return redirect('dashboard')
     else:
@@ -47,18 +53,10 @@ def edit_url(request, url_short):
     })
 
 
-def show_urls(request, url_short):
-    urls = URL_list.objects.filter(URL_short=url_short)
-    return render(request, 'link/showurls.html', {
-        'urls': urls,
-    })
-
-
 @login_required
 def delete_url(request, url_short):
-    post = get_object_or_404(URL_list.objects.filter(URL_short=url_short))
+    post = get_object_or_404(URL_list.objects.filter(URL_short=url_short, user=request.user))
     if request.method == "POST":
-        post.user = request.user
         post.delete()
         return redirect('dashboard')
     return render(request, 'link/delete_confirm.html')

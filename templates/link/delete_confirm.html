@@ -10,18 +10,17 @@
 
 {% block content %}
 
-
-
 <p>Are you sure you want to delete </p>
+        {% buttons %}
+        <div class="form-control">
+        <div class="btn-group">
 
-       <form action="#" method="post" class="form-control">
+       <form action="#" method="post" >
           {% csrf_token %}
-          {% buttons %}
-            <button type="submit" class="btn btn-primary">
-              Confirm
-            </button>
-          {% endbuttons %}
-    </form>
 
+            <button type="submit" class="btn btn-primary">Confirm</button></form><form action={% url 'dashboard' %}><button class="btn btn-primary">No</button></form>
+
+        </div></div>
+        {% endbuttons %}
 
 {% endblock content %}

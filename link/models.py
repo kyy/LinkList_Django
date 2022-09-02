@@ -10,3 +10,4 @@ class URL_list(models.Model):
     URL_short = models.URLField(default=uuid.uuid4, max_length=255)
     data = models.DateTimeField(default=datetime.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=3)
+
