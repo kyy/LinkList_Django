@@ -16,11 +16,29 @@
 
 
     <br>
-{% for url in urls %}
-    <a href={% url 'link' url_short=url.URL_short %}>{{ url.name }}</a>------{{ url.data }}------<a href={% url 'link_edit' url_short=url.URL_short %}>edit</a>-----------<a href={% url 'link_delete' url_short=url.URL_short %}>delete</a><br>
-{% endfor %}
 
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Changing</th>
+      <th>Deleting</th>
+      <th>Data</th>
+    </tr>
+  </thead>
+  <tbody>
 
-
+    {% for url in urls %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><a href={% url 'link' url_short=url.URL_short %}>{{ url.name }}</a></td>
+      <td><a href={% url 'link_edit' url_short=url.URL_short %}>edit</a></td>
+      <td><a href={% url 'link_delete' url_short=url.URL_short %}>delete</a></td>
+      <td>{{ url.data }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}

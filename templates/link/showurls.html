@@ -8,16 +8,19 @@
 {% block content %}
     <h1>DASHBOARD</h1>
 
-
     <br>
-{% for url in urls %}
-
-        {{ url.user }}<br>
-        {{ url.URL_long }}<br>
 
 
-{% endfor %}
+    {{ urls.user }}
 
+<br>
+
+    {% for url in url_dict %}
+
+
+        {{ url }}<br>
+
+    {% endfor %}
 
 
 

@@ -1,3 +1,4 @@
+import re
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -31,9 +32,16 @@ def view_urls(request):
 
 
 def show_urls(request, url_short):
-    urls = URL_list.objects.filter(URL_short=url_short)
+    urls = URL_list.objects.get(URL_short=url_short)
+    url_dict = urls.URL_long
+    regex = r'(https?://[^\"\s>]+)'
+    matches = re.finditer(regex, url_dict, re.MULTILINE)
+    url_dict = []
+    for match in matches:
+        url_dict.append(match.group())
     return render(request, 'link/showurls.html', {
         'urls': urls,
+        'url_dict': url_dict,
     })
 
 
