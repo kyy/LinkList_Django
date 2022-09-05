@@ -1,6 +1,8 @@
 {% extends 'link/base.html' %}
 
 
+
+
 {% block title %}
 {{ title }}
 {% endblock %}
@@ -28,8 +30,8 @@
     </tr>
   </thead>
   <tbody>
-    {% for result in page.object_list %}
-            {% with url=result.object %}
+    {% for url in page_obj %}
+
     <tr>
       <th scope="row">{{ forloop.counter }}</th>
       <td><a href={% url 'link' url_short=url.URL_short %}>{{ url.name }}</a></td>
@@ -38,11 +40,11 @@
       <td>{{ url.data }}</td>
     </tr>
 
-   {% endwith %}   {% endfor %}
+     {% endfor %}
 
   </tbody>
 </table>
-
+{% include 'registration/pagination.html' %}
 {% endblock %}
 
-{% include 'registration/pagination.html' %}
+
