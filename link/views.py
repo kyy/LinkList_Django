@@ -1,5 +1,6 @@
 import re
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import URL_listForm
@@ -26,8 +27,16 @@ def new_url(request):
 @login_required
 def view_urls(request):
     urls = URL_list.objects.filter(user=request.user).order_by('-data')
+
+    paginator = Paginator(urls, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    page = paginator.page(int(request.GET.get('page', 1)))
+
     return render(request, 'link/dashboard.html', {
         'urls': urls,
+        'page_obj': page_obj,
+        'page': page,
     })
 
 
