@@ -37,6 +37,13 @@ def remove_page(uri):
 def roundto(number, to=100):
     return int(math.ceil(number / to)) * to
 
+@register.filter
+def adjust_for_counter(value, page):
+    value, page,  = int(value), int(page)
+    RESULTS_PER_PAGE = 5
+    counter_value = value + ((page - 1) * RESULTS_PER_PAGE)
+    return counter_value
+
 
 
 
