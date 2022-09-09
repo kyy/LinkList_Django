@@ -6,13 +6,21 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import URL_listForm
 from .models import URL_list
+from datetime import timedelta, datetime
+
+now = datetime.now()
+now = now.strftime("%Y-%m-%d")
 
 
 @login_required
 def new_url(request):
     form = URL_listForm(request.POST)
     if request.method == "POST":
-        if form.is_valid():
+        if form.is_valid() and URL_list.objects.filter(user=request.user,
+                                                       data__year=now[0:4],
+                                                       data__month=now[5:7],
+                                                       data__day=now[8:10]
+                                                       ).count()<3: # 3 link a day for free users
             name = form.cleaned_data['name']
             if URL_list.objects.filter(user=request.user, name=name).exists():
                 return HttpResponse('Same data already added, change name')
@@ -20,6 +28,7 @@ def new_url(request):
             post.user = request.user
             post.save()
             return redirect('dashboard')
+        else: return HttpResponse('You can create 3 links a day only, upgrade account.')
     return render(request, 'link/main.html', {
         'form': form,
     })
@@ -45,13 +54,12 @@ def show_urls(request, url_short):
     try:
         urls = URL_list.objects.get(URL_short=url_short)
         url_dict = urls.URL_long
-        n = 5 # 5 link for regular users
         regex = r'(https?://[^\"\s>]+)'
         matches = re.finditer(regex, url_dict, re.MULTILINE)
         url_dict = []
         for match in matches:
             url_dict.append(match.group())
-        url_dict = url_dict[:n]
+        url_dict = url_dict[0:5] # 5 link for regular users
     except ObjectDoesNotExist:
         redirect('dashboard')
     return render(request, 'link/showurls.html', {
