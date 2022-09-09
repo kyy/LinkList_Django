@@ -45,11 +45,13 @@ def show_urls(request, url_short):
     try:
         urls = URL_list.objects.get(URL_short=url_short)
         url_dict = urls.URL_long
+        n = 5 # 5 link for regular users
         regex = r'(https?://[^\"\s>]+)'
         matches = re.finditer(regex, url_dict, re.MULTILINE)
         url_dict = []
         for match in matches:
             url_dict.append(match.group())
+        url_dict = url_dict[:n]
     except ObjectDoesNotExist:
         redirect('dashboard')
     return render(request, 'link/showurls.html', {
