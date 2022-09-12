@@ -307,3 +307,5 @@ if DEBUG:
 #     'link.backends.CurrentUser',
 #     'django.contrib.auth.backends.ModelBackend',
 # )
+
+RATELIMIT_USE_CACHE = 'default'

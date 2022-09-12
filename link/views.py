@@ -4,14 +4,16 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from ratelimit.decorators import ratelimit
+
 from .forms import URL_listForm
 from .models import URL_list
-from datetime import timedelta, datetime
+from datetime import datetime
 
 now = datetime.now()
 now = now.strftime("%Y-%m-%d")
 
-
+@ratelimit(method='POST', block=True, rate='10/m', key='user')
 @login_required
 def new_url(request):
     form = URL_listForm(request.POST)
@@ -32,6 +34,7 @@ def new_url(request):
     return render(request, 'link/main.html', {
         'form': form,
     })
+
 
 
 @login_required
@@ -67,7 +70,7 @@ def show_urls(request, url_short):
         'url_dict': url_dict,
     })
 
-
+@ratelimit(method='POST', block=True, rate='10/m', key='user')
 @login_required
 def edit_url(request, url_short):
     post = get_object_or_404(URL_list.objects.filter(URL_short=url_short, user=request.user))
@@ -83,7 +86,7 @@ def edit_url(request, url_short):
         'form': form,
     })
 
-
+@ratelimit(method='POST', block=True, rate='10/m', key='user')
 @login_required
 def delete_url(request, url_short):
     post = get_object_or_404(URL_list.objects.filter(URL_short=url_short, user=request.user))
