@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.contrib.auth import authenticate
+from django.utils.translation import gettext_lazy as _
 
 
 class MyUserCreationForm(UserCreationForm):
@@ -11,7 +11,7 @@ class MyUserCreationForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data['email'].strip()
         if User.objects.filter(email__iexact=email).exists():
-            raise ValidationError('A user with that e-mail already exists.')
+            raise ValidationError(_(f'Пользователь с {email} зарегистрирован.'))
         return email
 
     class Meta:
@@ -27,7 +27,7 @@ class MyAuthenticationForm(AuthenticationForm):
         try:
             User.objects.get(username__exact=username)
         except User.DoesNotExist:
-            raise forms.ValidationError(f"The {username} is incorrect username.")
+            raise forms.ValidationError(_(f"{username} - неверное имя"))
         return username
 
     # # checking password

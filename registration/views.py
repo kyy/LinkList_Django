@@ -26,7 +26,6 @@ class SignUp(CreateView):
         form = self.form_class(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(to="login")
         return render(request, self.template_name, {'form': form})
 
 # def SignUp(request):

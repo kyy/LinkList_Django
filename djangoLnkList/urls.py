@@ -19,8 +19,8 @@ from django.conf.urls.i18n import i18n_patterns
 
 
 urlpatterns = i18n_patterns(
-    path('admin/', admin.site.urls),
-    path('', include('link.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('home/', include('registration.urls')),
+                            path('', include('registration.urls')),
+                            path('', include('link.urls')),
+                            path('admin/', admin.site.urls),
+                            path('accounts/', include('django.contrib.auth.urls')),
 )
