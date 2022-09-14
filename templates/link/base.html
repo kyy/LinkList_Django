@@ -10,9 +10,8 @@
         <link rel="stylesheet" href="{% static "plugins/bootstrap-5.2.0-dist/css/bootstrap.min.css" %}" />
         <link rel="stylesheet" href="{% static "plugins/fontawesome-free-6.1.2-web/css/all.min.css" %}" />
     {% block stylesheet %}{% endblock %}
-
     <script src={% static "plugins/bootstrap-5.2.0-dist/js/bootstrap.bundle.min.js" %}></script>
-
+    {% block jsscript %}{% endblock %}
 
 </head>
 {% endblock %}
@@ -23,12 +22,26 @@
  <div class="row">
     <div class="col"></div>
         <div class="col-6">
-          <div class="jumbotron">
-              <div class="container-md">
+            <div class="jumbotron">
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+<div class="container-fluid p-0">
+  <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" >
+        <span class="fas fa-bullhorn me-1"></span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    {{ message }}
+  </div>
+</div>
+{% endfor %}
+    </ul>
+ {% endif %}
+                <div class="container-md">
         {% block content %}
         {% endblock %}
-              </div>
-          </div>
+                </div>
+            </div>
         </div>
     <div class="col"></div>
  </div>
