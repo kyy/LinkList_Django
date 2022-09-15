@@ -8,6 +8,7 @@ from django.contrib import messages
 from .forms import URL_listForm
 from .models import URL_list
 from datetime import datetime
+from django.utils.translation import gettext as _
 
 now = datetime.now()
 now = now.strftime("%Y-%m-%d")
@@ -24,7 +25,7 @@ def new_url(request):
                                                        ).count()<3: # 3 link a day for free users
             name = form.cleaned_data['name']
             if URL_list.objects.filter(user=request.user, name=name).exists():
-                messages.warning(request, f'Запись с "{name}" именем уже добавлена, измениите имя')
+                messages.warning(request, _(f'Запись с "{name}" именем уже добавлена, измениите имя'))
                 return redirect('main')
             post = form.save(commit=False)
             post.user = request.user
@@ -66,7 +67,7 @@ def show_urls(request, url_short):
             i+=1
             url_dict.append(match.group())
         if i>5 and request.user.is_authenticated:
-            messages.warning(request, f'На вашей страничке "{urls.name}" отображается не более 5 ссылок, обновите аккуант, если хотите больше возможностей')
+            messages.warning(request, _(f'На вашей страничке "{urls.name}" отображается не более 5 ссылок, обновите аккуант, если хотите больше возможностей'))
         url_dict = url_dict[0:5] # 5 link for regular users
     except ObjectDoesNotExist:
         redirect('dashboard')
@@ -85,7 +86,7 @@ def edit_url(request, url_short):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            messages.success(request, f'Ваши данные в "{post.name}" обновлены')
+            messages.success(request, _(f'Ваши данные в "{post.name}" обновлены'))
             return redirect('dashboard')
     else:
         form = URL_listForm(instance=post)
@@ -100,6 +101,6 @@ def delete_url(request, url_short):
     post = get_object_or_404(URL_list.objects.filter(URL_short=url_short, user=request.user))
     if request.method == "POST":
         post.delete()
-        messages.success(request, f'Ваша страничка "{post.name}" удалена')
+        messages.success(request, _(f'Ваша страничка "{post.name}" удалена'))
         return redirect('dashboard')
     return render(request, 'link/delete_confirm.html')

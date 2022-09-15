@@ -23,4 +23,5 @@ urlpatterns = i18n_patterns(
                             path('', include('link.urls')),
                             path('admin/', admin.site.urls),
                             path('accounts/', include('django.contrib.auth.urls')),
+                            path('i18n/', include('django.conf.urls.i18n')),
 )

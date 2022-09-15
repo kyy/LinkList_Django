@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
+from django.utils.translation import gettext_lazy as _
 
 
 # bootstrap messeges
@@ -214,13 +215,14 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware', # для переводов, должен идти после session.middleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware', # для добавления префикса языка к шаблонам URL адресов
-    'django.contrib.sessions.middleware.SessionMiddleware',
+
+
 ]
 
 ROOT_URLCONF = 'djangoLnkList.urls'
@@ -237,6 +239,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',         # для перевода
             ],
 
         },
@@ -287,16 +290,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'Ru-ru'
-LANGUAGES = (
-    ('en', 'English'),
-    ('ru', 'Russian'),
-)
+LANGUAGE_CODE = 'ru'
+LANGUAGES =[
+    ('en', _('English')),
+    ('ru', _('Russian')),
+]
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-USE_L10N = True
 USE_TZ = True
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),

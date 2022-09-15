@@ -1,0 +1,104 @@
+****solr
+python manage.py build_solr_schema > schema.xml - создание схемы индексирования
+python manage.py rebuild_index - замена индексов
+python manage.py update_index - обновление индексов
+
+****smtp
+python -m smtpd -n -c DebuggingServer localhost:1025 - старт smtp сервера
+
+****gettext
+https://mlocati.github.io/articles/gettext-iconv-windows.html скачать gettext
+C:\Users\Tsaryuk-YL\PycharmProjects\djangoLnkList\locale\en\LC_MESSAGES\
+manage.py makemessages -l en -i venv - скомпилтровать перевод EN
+manage.py compilemessages
+manage.py makemessages --all -i venv - скомпилтровать перевод обязательно указать имя виртуальной среды(venv)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://www.eporner.com/video-6QiQXGaIFdg/mature-lingerie-blowjob-and-fit-teen-fucked-art-imitating-life/
+Julianna Vega and Mia Khalifa
