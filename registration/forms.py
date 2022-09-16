@@ -11,7 +11,7 @@ class MyUserCreationForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data['email'].strip()
         if User.objects.filter(email__iexact=email).exists():
-            raise ValidationError(_(f'Пользователь с {email} зарегистрирован.'))
+            raise ValidationError(_('Пользователь с %(email) зарегистрирован.')%{'email': email})
         return email
 
     class Meta:
@@ -27,7 +27,7 @@ class MyAuthenticationForm(AuthenticationForm):
         try:
             User.objects.get(username__exact=username)
         except User.DoesNotExist:
-            raise forms.ValidationError(_(f"{username} - неверное имя"))
+            raise forms.ValidationError(_("%(username)- неверное имя")%{'username': username})
         return username
 
     # # checking password

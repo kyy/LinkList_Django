@@ -1,19 +1,15 @@
 {% extends 'link/base.html' %}
 
 
-
-
-
-
 {% block title %}
 {{ title }}
 {% endblock %}
 
 {% block content %}
-    <h1>DASHBOARD</h1>
+    <h1>Личный кабинет</h1>
 
     {% if urls %}
-        <p>Hi {{ user }}, its your links, click for details or changes:</p>
+        <p>Привет {{ user }}, это твои странички, здесь ты можешь упралять ими:</p>
     {% else %}
         <p><a href={% url 'main' %}>Create</a> your first link</p>
     {% endif %}
