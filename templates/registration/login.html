@@ -1,4 +1,5 @@
 {% extends 'link/base.html' %}
+{% load i18n %}
 
 {% block title %}
     Login
@@ -9,7 +10,7 @@
     <hr>
     {% if user.is_authenticated %}
              You are already logining!
-          <a href="{% url 'logout' %}">Logout</a>
+          <a href="{% url 'logout' %}">{% translate 'Выйти' %}</a>
     {% else %}
         {% include 'registration/form_snippet.html' %}
     {% endif %}

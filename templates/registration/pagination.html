@@ -10,10 +10,10 @@
 
           {% if page_obj.number > 2 %}
             <li class="page-item">
-              <a class="page-link" href="{{ path|remove_page }}" title="{% trans 'First page' %}">&laquo;</a>
+              <a class="page-link" href="{{ path|remove_page }}" title="{% trans 'Первая' %}">&laquo;</a>
             </li>
             <li class="page-item">
-              <a class="page-link" href="{{ path|set_page:page_obj.previous_page_number }}" title="{% trans 'Previous page' %}">&lsaquo;</a>
+              <a class="page-link" href="{{ path|set_page:page_obj.previous_page_number }}" title="{% trans 'Предыдущая' %}">&lsaquo;</a>
             </li>
           {% endif %}
 
@@ -87,10 +87,10 @@
 
           {% if page_obj.number|add:2 < page_obj.paginator.num_pages %}
             <li class="page-item">
-              <a class="page-link" href="{{ path|set_page:page_obj.next_page_number }}" title="{% trans 'Next page' %}">&rsaquo;</a>
+              <a class="page-link" href="{{ path|set_page:page_obj.next_page_number }}" title="{% trans 'Следующая' %}">&rsaquo;</a>
             </li>
             <li class="page-item">
-              <a class="page-link" href="{{ path|set_page:page_obj.paginator.num_pages }}" title={% trans 'Last page' %}>&raquo;</a>
+              <a class="page-link" href="{{ path|set_page:page_obj.paginator.num_pages }}" title={% trans 'Последняя' %}>&raquo;</a>
             </li>
           {% endif %}
 

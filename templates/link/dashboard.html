@@ -1,15 +1,15 @@
 {% extends 'link/base.html' %}
-
+{% load i18n %}
 
 {% block title %}
 {{ title }}
 {% endblock %}
 
 {% block content %}
-    <h1>Личный кабинет</h1>
+    <h1>{% translate 'Личный кабинет' %}</h1>
 
     {% if urls %}
-        <p>Привет {{ user }}, это твои странички, здесь ты можешь упралять ими:</p>
+        <p>{% translate 'Привет' %} {{ user }}, {% translate 'здесь ты можешь упралять страничками' %}</p>
     {% else %}
         <p><a href={% url 'main' %}>Create</a> your first link</p>
     {% endif %}
@@ -21,10 +21,10 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>Name</th>
-      <th>Changing</th>
-      <th>Deleting</th>
-      <th>Data</th>
+      <th>{% translate 'Имя' %}</th>
+      <th>{% translate 'Внести изменения' %}</th>
+      <th>{% translate 'Удаление' %}</th>
+      <th>{% translate 'Дата создания' %}</th>
     </tr>
   </thead>
   <tbody>
@@ -33,8 +33,8 @@
     <tr>
       <th scope="row">{{ page_obj.start_index|add:forloop.counter0 }}</th>
       <td><a href={% url 'link' url_short=url.URL_short %}>{{ url.name }}</a></td>
-      <td><a href={% url 'link_edit' url_short=url.URL_short %}>edit</a></td>
-      <td><a href={% url 'link_delete' url_short=url.URL_short %}>delete</a></td>
+      <td><a href={% url 'link_edit' url_short=url.URL_short %}>{% translate 'изменить' %}</a></td>
+      <td><a href={% url 'link_delete' url_short=url.URL_short %}>{% translate 'удалить' %}</a></td>
       <td>{{ url.data }}</td>
     </tr>
 

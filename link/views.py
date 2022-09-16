@@ -26,14 +26,14 @@ def new_url(request):
                                                        ).count()<3: # 3 link a day for free users
             name = form.cleaned_data['name']
             if URL_list.objects.filter(user=request.user, name=name).exists():
-                messages.warning(request, _('Запись с %(name) именем уже добавлена, измениите имя')%{'name': name})
+                messages.warning(request, _('Запись с %(name)s именем уже добавлена, измениите имя') % {'name': name})
                 return redirect('main')
             post = form.save(commit=False)
             post.user = request.user
             post.save()
             return redirect('dashboard')
         else:
-            messages.warning(request, 'Вы можете создавать только 3 странички в день, обновите аккуант, если хотите больше возможностей')
+            messages.warning(request, _('Вы можете создавать только 3 странички в день, обновите аккуант, если хотите больше возможностей'))
             return redirect('dashboard')
     return render(request, 'link/main.html', {
         'form': form,
@@ -68,7 +68,7 @@ def show_urls(request, url_short):
             i+=1
             url_dict.append(match.group())
         if i>5 and request.user.is_authenticated:
-            messages.warning(request, _('На вашей страничке %(urls.name) отображается не более 5 ссылок, обновите аккуант, если хотите больше возможностей')%{'urls.name': urls.name})
+            messages.warning(request, _('На вашей страничке %(urls.name)s отображается не более 5 ссылок, обновите аккуант, если хотите больше возможностей') % {'urls.name':urls.name})
         url_dict = url_dict[0:5] # 5 link for regular users
     except ObjectDoesNotExist:
         redirect('dashboard')
@@ -87,7 +87,7 @@ def edit_url(request, url_short):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            messages.success(request, _('Ваши данные в %(post.name) обновлены')%{'post.name': post.name})
+            messages.success(request, _('Ваши данные в %(post.name)s обновлены') % {'post.name': post.name})
             return redirect('dashboard')
     else:
         form = URL_listForm(instance=post)
@@ -102,6 +102,6 @@ def delete_url(request, url_short):
     post = get_object_or_404(URL_list.objects.filter(URL_short=url_short, user=request.user))
     if request.method == "POST":
         post.delete()
-        messages.success(request, _('Ваша страничка %(post.name) удалена')%{'post.name': post.name})
+        messages.success(request, _('Ваша страничка %(post.name)s удалена') % {'post.name': post.name})
         return redirect('dashboard')
     return render(request, 'link/delete_confirm.html')

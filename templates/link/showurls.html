@@ -1,4 +1,5 @@
 {% extends 'link/base.html' %}
+{%  load i18n %}
 
 
 {% block title %}
@@ -6,12 +7,12 @@
 {% endblock %}
 
 {% block content %}
-    <h1>DASHBOARD</h1>
+    <h1>{% translate 'Вы надодитесь на страничке -' %}{{ urls.name }}</h1>
 
     <br>
 
 
-    {{ urls.user }}
+    {% translate 'Автор -' %}{{ urls.user }}
 <br>
 
 

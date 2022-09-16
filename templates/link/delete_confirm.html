@@ -1,5 +1,5 @@
 {% extends 'link/base.html' %}
-{% load bootstrap5 %}
+{% load i18n bootstrap5 %}
 
 
 {% block title %}
@@ -10,7 +10,7 @@
 
 {% block content %}
 
-<p>Are you sure you want to delete </p>
+<p>{% translate 'Вы уверены, что хотите удалить запись?' %} </p>
         {% buttons %}
         <div class="form-control">
         <div class="btn-group">
@@ -18,7 +18,7 @@
        <form action="#" method="post" >
           {% csrf_token %}
 
-            <button type="submit" class="btn btn-primary">Confirm</button></form><form action={% url 'dashboard' %}><button class="btn btn-primary">No</button></form>
+            <button type="submit" class="btn btn-primary">{% translate 'Подтвердить' %}</button></form><form action={% url 'dashboard' %}><button class="btn btn-primary">{% translate 'Нет' %}</button></form>
 
         </div></div>
         {% endbuttons %}
