@@ -1,9 +1,10 @@
 {% extends 'link/base.html'  %}
+{%  load i18n %}
 
 {% block title %}Register{% endblock %}
 {% block content %}
 
-<h2>Register</h2>
+<h2>{%  translate 'Регистрация' %}</h2>
  <hr>
 {% include 'registration/form_snippet.html' %}
 {% endblock %}
