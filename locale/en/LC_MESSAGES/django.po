@@ -1,0 +1,295 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-19 13:39+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\djangoLnkList\settings.py:295
+msgid "English"
+msgstr ""
+
+#: .\djangoLnkList\settings.py:296
+msgid "Russian"
+msgstr ""
+
+#: .\link\forms.py:7
+msgid "Имя страницы"
+msgstr "Name of page"
+
+#: .\link\forms.py:8
+msgid "Вставьте ссылки через пробел или с новой строки"
+msgstr "Insert links separated by spaces or from a new line"
+
+#: .\link\views.py:29
+#, python-format
+msgid "Запись с %(name)s именем уже добавлена, измениите имя"
+msgstr "Entry with name %(name)s already added, change name"
+
+#: .\link\views.py:36
+msgid ""
+"Вы можете создавать только 3 странички в день, обновите аккуант, если хотите "
+"больше возможностей"
+msgstr ""
+"You can only create 3 pages per day, update your account if you wantmore "
+"possibilities"
+
+#: .\link\views.py:71
+#, python-format
+msgid ""
+"На вашей страничке %(urls.name)s отображается не более 5 ссылок, обновите "
+"аккуант, если хотите больше возможностей"
+msgstr ""
+"Your page %(urls.name)s displays no more than 5 links, please update account "
+"if you want more features"
+
+#: .\link\views.py:90
+#, python-format
+msgid "Ваши данные в %(post.name)s обновлены"
+msgstr "Your data in %(post.name)s has been updated"
+
+#: .\link\views.py:105
+#, python-format
+msgid "Ваша страничка %(post.name)s удалена"
+msgstr "Your page %(post.name)s has been deleted"
+
+#: .\registration\forms.py:14
+#, python-format
+msgid "Пользователь с %(email)s зарегистрирован."
+msgstr "The user with %(email)s is registered."
+
+#: .\registration\forms.py:30
+#, python-format
+msgid "%(username)s - неверное имя"
+msgstr "%(username)s - invalid name"
+
+#: .\templates\link\dashboard.html:9
+msgid "Личный кабинет"
+msgstr "Personal Area"
+
+#: .\templates\link\dashboard.html:12 .\templates\registration\home.html:7
+msgid "Привет"
+msgstr "Hello"
+
+#: .\templates\link\dashboard.html:12
+msgid "здесь ты можешь упралять страничками"
+msgstr "here you can manage pages"
+
+#: .\templates\link\dashboard.html:24
+msgid "Имя"
+msgstr "Name"
+
+#: .\templates\link\dashboard.html:25
+msgid "Внести изменения"
+msgstr "Make changes"
+
+#: .\templates\link\dashboard.html:26
+msgid "Удаление"
+msgstr "Removal"
+
+#: .\templates\link\dashboard.html:27
+msgid "Дата создания"
+msgstr "date of creation"
+
+#: .\templates\link\dashboard.html:36
+msgid "изменить"
+msgstr "Edit"
+
+#: .\templates\link\dashboard.html:37
+msgid "удалить"
+msgstr "Delete"
+
+#: .\templates\link\delete_confirm.html:13
+msgid "Вы уверены, что хотите удалить запись?"
+msgstr "Are you sure you want to delete the entry?"
+
+#: .\templates\link\delete_confirm.html:21
+msgid "Подтвердить"
+msgstr "Confirm"
+
+#: .\templates\link\delete_confirm.html:21
+msgid "Нет"
+msgstr "No"
+
+#: .\templates\link\main.html:9
+msgid "Генератор страниц"
+msgstr "Page Generator"
+
+#: .\templates\link\nav.html:20
+msgid "админка"
+msgstr "admin"
+
+#: .\templates\link\nav.html:21
+msgid "генератор страниц"
+msgstr "page generator"
+
+#: .\templates\link\nav.html:27
+msgid "личный кабинет"
+msgstr "personal area"
+
+#: .\templates\link\nav.html:28
+msgid "выйти"
+msgstr "logout"
+
+#: .\templates\link\nav.html:29
+msgid "изменить пароль"
+msgstr "change password"
+
+#: .\templates\link\nav.html:31
+msgid "вход | регистрация"
+msgstr "login | signup"
+
+#: .\templates\link\nav.html:33
+msgid "войти"
+msgstr "login"
+
+#: .\templates\link\nav.html:34
+msgid "зарегистрироваться"
+msgstr "signup"
+
+#: .\templates\link\nav.html:35
+msgid "восстановить аккаунт"
+msgstr "restore account"
+
+#: .\templates\link\showurls.html:10
+msgid "Вы надодитесь на страничке -"
+msgstr "You are on the page -"
+
+#: .\templates\link\showurls.html:15
+msgid "Автор -"
+msgstr "Author -"
+
+#: .\templates\registration\form_snippet.html:10
+msgid "Отправить"
+msgstr "Send"
+
+#: .\templates\registration\home.html:9
+msgid "Добро пожаловать на сайт"
+msgstr "Welcome to the site"
+
+#: .\templates\registration\home.html:13 .\templates\registration\login.html:13
+msgid "Выйти"
+msgstr "loguot"
+
+#: .\templates\registration\home.html:15
+msgid "Зарегистрироваться"
+msgstr "signup"
+
+#: .\templates\registration\home.html:16
+#: .\templates\registration\password_reset_complete.html:8
+msgid "Войти"
+msgstr "login"
+
+#: .\templates\registration\pagination.html:13
+msgid "Первая"
+msgstr "first"
+
+#: .\templates\registration\pagination.html:16
+msgid "Предыдущая"
+msgstr "previous"
+
+#: .\templates\registration\pagination.html:90
+msgid "Следующая"
+msgstr "next"
+
+#: .\templates\registration\pagination.html:93
+msgid "Последняя"
+msgstr "last"
+
+#: .\templates\registration\password_change_done.html:4
+msgid "Пароль изменен"
+msgstr "Password changed"
+
+#: .\templates\registration\password_change_done.html:7
+msgid "Ваш пароль благополучно изменен"
+msgstr "Your password has been successfully changed"
+
+#: .\templates\registration\password_change_form.html:6
+msgid "Страница смены пароля"
+msgstr "Change password page"
+
+#: .\templates\registration\password_change_form.html:9
+msgid "Смена пароля"
+msgstr "Password change"
+
+#: .\templates\registration\password_reset_complete.html:5
+msgid "Смена пароля завершена"
+msgstr "Password change completed"
+
+#: .\templates\registration\password_reset_complete.html:8
+msgid "Ваш новый пароль установлен, вы можете теперь"
+msgstr "Your new password has been set, you can now"
+
+#: .\templates\registration\password_reset_confirm.html:8
+msgid "Подтверждение сброса пароля"
+msgstr "Password reset confirmation"
+
+#: .\templates\registration\password_reset_confirm.html:10
+msgid "Введите ваш новый пароль"
+msgstr "Enter your new password"
+
+#: .\templates\registration\password_reset_done.html:5
+msgid "Сброс пароля прошел успешно"
+msgstr "Password reset successful"
+
+#: .\templates\registration\password_reset_done.html:11
+msgid "Сброс пароля отправлен"
+msgstr "Password reset sent"
+
+#: .\templates\registration\password_reset_done.html:13
+msgid ""
+"Мы отправили инструкцию для установки пароля. Если вы не получили письмо, "
+"проверьте СПАМ, или правильность email"
+msgstr ""
+"We have sent instructions for setting a password. If you have not received a "
+"letter,check SPAM, or correct email"
+
+#: .\templates\registration\password_reset_email.html:4
+msgid ""
+"Выполучили этот e-mail, т.к. запросили сброс пароля для вашего аккаунта на"
+msgstr ""
+"You received this e-mail because have requested a password reset for your "
+"account on"
+
+#: .\templates\registration\password_reset_email.html:5
+msgid "Проследуйте по ссылке ниже и выберите новый пароль:"
+msgstr "Follow the link below and choose a new password:"
+
+#: .\templates\registration\password_reset_email.html:11
+msgid "Ваше имя пользователя:"
+msgstr "Your username"
+
+#: .\templates\registration\password_reset_email.html:13
+msgid "Спасибо, что пользуетесь нашим сайтом!"
+msgstr "Thank you for using our site!"
+
+#: .\templates\registration\password_reset_email.html:15
+msgid "команда"
+msgstr "team"
+
+#: .\templates\registration\password_reset_form.html:14
+msgid ""
+"Забыли пароль? Заполните форму ниже и мы отправим вам дальнейшую инструкцию"
+msgstr ""
+"Forgot your password? Fill out the form below and we will send you further "
+"instructions."
+
+#: .\templates\registration\signup.html:7
+msgid "Регистрация"
+msgstr "Sign-Up"
+
+#~ msgid "Language"
+#~ msgstr "Язык"
