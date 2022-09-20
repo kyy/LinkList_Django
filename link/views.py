@@ -1,10 +1,9 @@
 import re
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
-from ratelimit.decorators import ratelimit
 from django.contrib import messages
+from ratelimit.decorators import ratelimit
 from .forms import URL_listForm
 from .models import URL_list
 from datetime import datetime
@@ -13,6 +12,7 @@ from django.utils.translation import gettext as _
 
 now = datetime.now()
 now = now.strftime("%Y-%m-%d")
+
 
 @ratelimit(method='POST', block=True, rate='10/m', key='user')
 @login_required
@@ -23,7 +23,7 @@ def new_url(request):
                                                        data__year=now[0:4],
                                                        data__month=now[5:7],
                                                        data__day=now[8:10]
-                                                       ).count()<10: # 3 link a day for free users
+                                                       ).count() < 10:  # 3 link a day for free users
             name = form.cleaned_data['name']
             if URL_list.objects.filter(user=request.user, name=name).exists():
                 messages.warning(request, _('Запись с %(name)s именем уже добавлена, измениите имя') % {'name': name})
@@ -61,13 +61,13 @@ def show_urls(request, url_short):
         regex = r'(https?://[^\"\s>]+)'
         matches = re.finditer(regex, url_dict, re.MULTILINE)
         url_dict = []
-        i=0
+        i = 0
         for match in matches:
-            i+=1
+            i += 1
             url_dict.append(match.group())
-        if i>5 and request.user.is_authenticated:
-            messages.warning(request, _('На вашей страничке %(urls.name)s отображается не более 5 ссылок, обновите аккуант, если хотите больше возможностей') % {'urls.name':urls.name})
-        url_dict = url_dict[0:5] # 5 link for regular users
+        if i > 5 and request.user.is_authenticated:
+            messages.warning(request, _('На вашей страничке %(urls.name)s отображается не более 5 ссылок, обновите аккуант, если хотите больше возможностей') % {'urls.name': urls.name})
+        url_dict = url_dict[0:5]  # 5 link for regular users
     except ObjectDoesNotExist:
         redirect('dashboard')
     return render(request, 'link/showurls.html', {
