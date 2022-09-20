@@ -23,7 +23,7 @@ def new_url(request):
                                                        data__year=now[0:4],
                                                        data__month=now[5:7],
                                                        data__day=now[8:10]
-                                                       ).count()<3: # 3 link a day for free users
+                                                       ).count()<10: # 3 link a day for free users
             name = form.cleaned_data['name']
             if URL_list.objects.filter(user=request.user, name=name).exists():
                 messages.warning(request, _('Запись с %(name)s именем уже добавлена, измениите имя') % {'name': name})
@@ -43,14 +43,12 @@ def new_url(request):
 @login_required
 def view_urls(request):
     urls = URL_list.objects.filter(user=request.user).order_by('-data')
-    paginator = Paginator(urls, 5)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    # page = paginator.page(int(request.GET.get('page', 1)))
+    # paginator = Paginator(urls, 3)
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
     return render(request, 'link/dashboard.html', {
         'urls': urls,
-        'page_obj': page_obj,
-        # 'page': page,
+        # 'page_obj': page_obj,
     })
 
 

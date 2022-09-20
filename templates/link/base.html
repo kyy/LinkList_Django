@@ -9,8 +9,12 @@
     <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="{% static "plugins/bootstrap-5.2.0-dist/css/bootstrap.min.css" %}" />
         <link rel="stylesheet" href="{% static "plugins/fontawesome-free-6.1.2-web/css/all.min.css" %}" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     {% block stylesheet %}{% endblock %}
-    <script src={% static "plugins/bootstrap-5.2.0-dist/js/bootstrap.bundle.min.js" %}></script>
+        <script src={% static "plugins/bootstrap-5.2.0-dist/js/bootstrap.bundle.min.js" %}></script>
+        <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
     {% block jsscript %}{% endblock %}
 
 </head>

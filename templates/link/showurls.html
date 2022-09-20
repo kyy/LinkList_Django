@@ -6,17 +6,22 @@
 {{ title }}
 {% endblock %}
 
+{% block jsscript %}
+
+{% endblock %}
+
+
 {% block content %}
     <h1>{% translate 'Вы надодитесь на страничке -' %}{{ urls.name }}</h1>
 
     <br>
 
-
     {% translate 'Автор -' %}{{ urls.user }}
-<br>
+
+    <br>
 
 
-    <table class="table table-hover">
+    <table class="table table-hover" id="table_id">
   <thead>
     <tr>
       <th></th>
