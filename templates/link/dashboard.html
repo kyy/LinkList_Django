@@ -1,10 +1,13 @@
 {% extends 'link/base.html' %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}
 {{ title }}
 {% endblock %}
 
+{% block jsscript %}
+    <script type="text/javascript" charset="utf8" src="{% static 'JS/table.js' %}"></script>
+{% endblock %}
 
 {% block content %}
     <h1>{% translate 'Личный кабинет' %}</h1>
@@ -45,24 +48,6 @@
   </tbody>
 </table>
 
-<script>
-    $(document).ready(function () {
-    $('#table_db').DataTable( {
-        "paging": true,
-        "searching": true,
-        "autoWidth": false,
-        "ordering": true,
-        "columnDefs": [
-            {"width": "50px", "targets": 0},
-            {"width": "250px", "targets": 1},
-
-            {"targets": 1,
-            "searchable": false
-            }]
-    }
-    );
-} );
-</script>
 
 <!-- for checking JS on load -->
 {#    <script>#}
