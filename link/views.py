@@ -8,6 +8,7 @@ from .forms import URL_listForm
 from .models import URL_list
 from datetime import datetime
 from django.utils.translation import gettext as _
+from .BLogic import URL_parser
 
 
 now = datetime.now()
@@ -40,6 +41,24 @@ def new_url(request):
     })
 
 
+def show_urls(request, url_short):
+    urls = None
+    url_dict = None
+    try:
+        urls = URL_list.objects.get(URL_short=url_short)
+        url_dict = urls.URL_long
+        url_dict, i = URL_parser(url_dict)
+        if i > 5 and request.user.is_authenticated:
+            messages.warning(request, _('На вашей страничке %(urls.name)s отображается не более 5 ссылок, обновите аккуант, если хотите больше возможностей') % {'urls.name': urls.name})
+        url_dict = url_dict[0:5]  # 5 link for regular users
+    except ObjectDoesNotExist:
+        redirect('dashboard')
+    return render(request, 'link/showurls.html', {
+        'urls': urls,
+        'url_dict': url_dict,
+    })
+
+
 @login_required
 def view_urls(request):
     urls = URL_list.objects.filter(user=request.user).order_by('-data')
@@ -49,30 +68,6 @@ def view_urls(request):
     return render(request, 'link/dashboard.html', {
         'urls': urls,
         # 'page_obj': page_obj,
-    })
-
-
-def show_urls(request, url_short):
-    urls = None
-    url_dict = None
-    try:
-        urls = URL_list.objects.get(URL_short=url_short)
-        url_dict = urls.URL_long
-        regex = r'(https?://[^\"\s>]+)'
-        matches = re.finditer(regex, url_dict, re.MULTILINE)
-        url_dict = []
-        i = 0
-        for match in matches:
-            i += 1
-            url_dict.append(match.group())
-        if i > 5 and request.user.is_authenticated:
-            messages.warning(request, _('На вашей страничке %(urls.name)s отображается не более 5 ссылок, обновите аккуант, если хотите больше возможностей') % {'urls.name': urls.name})
-        url_dict = url_dict[0:5]  # 5 link for regular users
-    except ObjectDoesNotExist:
-        redirect('dashboard')
-    return render(request, 'link/showurls.html', {
-        'urls': urls,
-        'url_dict': url_dict,
     })
 
 

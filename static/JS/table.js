@@ -2,13 +2,13 @@ function format(d) {
     console.log(d);
     var html ='<table class="table">';
     html+= '<thead>';
-    html+= '<tr><th scope="col">Ссылки</th>>'
-    html+= '<th scope="col">Описание</th>>'
+    html+= '<tr><th scope="col">Ссылки</th>';
+    html+= '<th scope="col">Описание</th>';
     html+= '</thead>';
     html+= '<tbody>';
     html+= '<tr>';
-    html+= '<td>'+d[1]+'</td>';
     html+= '<td>'+d[2]+'</td>';
+    html+= '<td>'+d[5]+'</td>';
     html+= '</tr>';
     html+= '</tbody>';
     return html;
