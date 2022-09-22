@@ -26,6 +26,7 @@
 <table id="table_db" class="table table-hover">
   <thead>
     <tr>
+      <th></th>
       <th>#</th>
       <th>{% translate 'Имя' %}</th>
       <th>{% translate 'Внести изменения' %}</th>
@@ -39,11 +40,12 @@
 
     <tr>
 {#      <th scope="row">{{ urls.start_index|add:forloop.counter0 }}</th>#} <!-- for django pagination -->
-      <th scope="row">{{ forloop.counter }}</th>
+      <td></td>
+      <td> {{ forloop.counter }}</td>
       <td><a href={% url 'link' url_short=url.URL_short %}>{{ url.name }}</a></td>
       <td><a href={% url 'link_edit' url_short=url.URL_short %}>{% translate 'изменить' %}</a></td>
       <td><a href={% url 'link_delete' url_short=url.URL_short %}>{% translate 'удалить' %}</a></td>
-      <td>{{ url.data }}</td>
+      <td>{{ url.data|date:"Y/m/d" }}</td>
     </tr>
 
      {% endfor %}

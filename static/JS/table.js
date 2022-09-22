@@ -1,5 +1,24 @@
+function format(d) {
+    console.log(d);
+    var html ='<table class="table">';
+    html+= '<thead>';
+    html+= '<tr><th scope="col">Ссылки</th>>'
+    html+= '<th scope="col">Описание</th>>'
+    html+= '</thead>';
+    html+= '<tbody>';
+    html+= '<tr>';
+    html+= '<td>'+d[1]+'</td>';
+    html+= '<td>'+d[2]+'</td>';
+    html+= '</tr>';
+    html+= '</tbody>';
+    return html;
+
+
+}
+
+
 $(document).ready(function () {
-$('#table_db').DataTable( {
+    var table = $('#table_db').DataTable( {
     // "processing": true,   https://pypi.org/project/django-serverside-datatable/
     // "serverSide": true,   pip install django-serverside-datatable
     "paging": true,
@@ -11,11 +30,12 @@ $('#table_db').DataTable( {
         [5, 10, 25, 50, 'All'],
     ],
     "columnDefs": [
-        {"targets": 0, "width": "10px", "searchable": false, },
-        {"targets": 1, "width": "350px", },
-        {"targets": 2, "width": "50px", "searchable": false, "orderable": false},
-        {"targets": 3, "width": "50x", "searchable": false, "orderable": false },
-        {"targets": 4, "width": "220px", "searchable": false, },
+        {"targets": 0, "width": "10px", "searchable": false, "orderable": false, "className": 'dt-control', "data": null, "defaultContent": '',  },
+        {"targets": 1, "width": "10px", "searchable": false, },
+        {"targets": 2, "width": "350px", },
+        {"targets": 3, "width": "50px", "searchable": false, "orderable": false, },
+        {"targets": 4, "width": "50x", "searchable": false, "orderable": false, },
+        {"targets": 5, "width": "50px", "searchable": false, },
     ],
     "language": {
         "decimal":        "",
@@ -44,4 +64,22 @@ $('#table_db').DataTable( {
 
 
 
-});} );
+});
+// Add event listener for opening and closing details
+    $('#table_db tbody').on('click', 'td.dt-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        } else {
+            // Open this row
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+        }
+    });
+});
+
+/* Formatting function for row details - modify as you need */
