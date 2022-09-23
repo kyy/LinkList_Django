@@ -1,6 +1,7 @@
-import re
+import json
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from ratelimit.decorators import ratelimit
@@ -9,6 +10,8 @@ from .models import URL_list
 from datetime import datetime
 from django.utils.translation import gettext as _
 from .BLogic import URL_parser
+from django.core import serializers
+
 
 
 now = datetime.now()
@@ -69,6 +72,10 @@ def view_urls(request):
         'urls': urls,
         # 'page_obj': page_obj,
     })
+
+def json_url(request):
+    data = list(URL_list.objects.filter(user=request.user).values())
+    return JsonResponse(data, safe = False)
 
 
 @ratelimit(method='POST', block=True, rate='10/m', key='user')
