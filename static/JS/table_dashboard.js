@@ -2,8 +2,8 @@ function format(d) {
     console.log(d);
     var html ='<table class="table">';
     html+= '<thead>';
-    html+= '<tr><th scope="col">Ссылки</th>';
-    html+= '<th scope="col">Описание</th>';
+    html+= '<tr><th scope="col">Имя</th>';
+    html+= '<th scope="col">Дата</th>';
     html+= '</thead>';
     html+= '<tbody>';
     html+= '<tr>';
@@ -12,8 +12,6 @@ function format(d) {
     html+= '</tr>';
     html+= '</tbody>';
     return html;
-
-
 }
 
 
