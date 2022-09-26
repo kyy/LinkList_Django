@@ -1,14 +1,19 @@
+
 function format(d) {
+    var dataParsed = JSON.parse(document.getElementById('dataJson').textContent);
     console.log(d);
+    console.log(dataParsed);
     var html ='<table class="table">';
     html+= '<thead>';
     html+= '<tr><th scope="col">Имя</th>';
     html+= '<th scope="col">Дата</th>';
+    html+= '<th scope="col">Что-то</th>';
     html+= '</thead>';
     html+= '<tbody>';
     html+= '<tr>';
     html+= '<td>'+d[2]+'</td>';
     html+= '<td>'+d[5]+'</td>';
+    html+= '<td>'+dataParsed[2][1]+'</td>';
     html+= '</tr>';
     html+= '</tbody>';
     return html;

@@ -8,5 +8,4 @@ urlpatterns = [
     path('<str:url_short>/edit/', views.edit_url, name='link_edit'),
     path('<str:url_short>/delete/', views.delete_url, name='link_delete'),
     path('<str:url_short>', views.show_urls, name='link'),
-    path('json/', views.json_url, name='json_url'),
 ]

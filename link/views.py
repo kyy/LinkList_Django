@@ -65,17 +65,15 @@ def show_urls(request, url_short):
 @login_required
 def view_urls(request):
     urls = URL_list.objects.filter(user=request.user).order_by('-data')
+    data = serializers.serialize('json', URL_list.objects.filter(user=request.user))
     # paginator = Paginator(urls, 3)
     # page_number = request.GET.get('page')
     # page_obj = paginator.get_page(page_number)
     return render(request, 'link/dashboard.html', {
         'urls': urls,
+        'data':data,
         # 'page_obj': page_obj,
     })
-
-def json_url(request):
-    data = list(URL_list.objects.filter(user=request.user).values())
-    return JsonResponse(data, safe = False)
 
 
 @ratelimit(method='POST', block=True, rate='10/m', key='user')

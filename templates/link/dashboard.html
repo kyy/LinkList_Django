@@ -13,6 +13,13 @@
 {% endblock %}
 
 {% block content %}
+
+
+    <div id="dataJson" style="display:none">
+        {{ data }}
+    </div>
+
+
     <h1>{% translate 'Личный кабинет' %}</h1>
 
     {% if urls %}
@@ -53,9 +60,7 @@
   </tbody>
 </table>
 
-{% for url in data %}
-    {{ url}}
-    {% endfor %}
+
 <!-- for checking JS on load -->
 {#    <script>#}
 {#    window.onload = function() {#}
