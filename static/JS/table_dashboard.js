@@ -15,11 +15,32 @@ function format(d) {
     return html;
 }
 
+$('#table_db').on( 'click', 'tbody tr', function () {
+    if ( table.row( this, { selected: true } ).any() ) {
+        table.row( this ).deselect();
+    }
+    else {
+        table.row( this ).select();
+    }
+} );
 
 $(document).ready(function () {
     var table = $('#table_db').DataTable( {
     // "processing": true,   https://pypi.org/project/django-serverside-datatable/
     // "serverSide": true,   pip install django-serverside-datatable
+    select: true,
+    buttons: [
+        {
+            extend: 'selected',
+            action: function ( e, dt, node, config ) {
+                var rows = dt.rows( { selected: true } ).count();
+
+                alert( 'There are '+rows+'(s) selected in the table' );
+            }
+        }
+    ],
+
+    responsive: true,
     paging: true,
     autoWidth: false,
     searching: true,
@@ -61,10 +82,10 @@ $(document).ready(function () {
             sortDescending: ": activate to sort column descending"
         }
     }
-
-
-
 });
+
+
+
 // Add event listener for opening and closing details
     $('#table_db tbody').on('click', 'td.dt-control', function () {
         var tr = $(this).closest('tr');
@@ -79,6 +100,35 @@ $(document).ready(function () {
             row.child(format(row.data())).show();
             tr.addClass('shown');
         }
+    });
+
+
+
+
+    // Handle click on "Expand All" button
+    $('#btn-show-all-children').on('click', function(){
+        // Enumerate all rows
+        table.rows().every(function(){
+            // If row has details collapsed
+            if(!this.child.isShown()){
+                // Open this row
+                this.child(format(this.data())).show();
+                $(this.node()).addClass('shown');
+            }
+        });
+    });
+
+    // Handle click on "Collapse All" button
+    $('#btn-hide-all-children').on('click', function(){
+        // Enumerate all rows
+        table.rows().every(function(){
+            // If row has details expanded
+            if(this.child.isShown()){
+                // Collapse row details
+                this.child.hide();
+                $(this.node()).removeClass('shown');
+            }
+        });
     });
 });
 
