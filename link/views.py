@@ -1,5 +1,6 @@
 import json
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -11,6 +12,10 @@ from datetime import datetime
 from django.utils.translation import gettext as _
 from .BLogic import URL_parser
 from django.core import serializers
+from django.contrib.auth.models import User
+from django.db.models import Q
+from django.views.generic import TemplateView
+from django_datatables_view.base_datatable_view import BaseDatatableView
 
 
 
@@ -103,3 +108,25 @@ def delete_url(request, url_short):
         messages.success(request, _('Ваша страничка %(post.name)s удалена') % {'post.name': post.name})
         return redirect('dashboard')
     return render(request, 'link/delete_confirm.html')
+
+
+class view_urls_server(LoginRequiredMixin, TemplateView):
+    template_name = 'link/dashboard_server.html'
+
+
+class view_urls_server_json(LoginRequiredMixin, BaseDatatableView):
+    model = URL_list
+    columns = ['user', 'data', 'URL_long', 'URL_short', 'data', 'name']
+    order_columns = ['user', 'data', 'URL_long', 'URL_short', 'data', 'name']
+
+    def filter_queryset(self, qs):
+        ssearch = self.request.GET.get('ssearch', None)
+        if ssearch:
+            qs = qs.filter(Q(URL_long__istartswith=ssearch) | Q(URL_short__istartswith=ssearch))
+        return qs
+
+
+
+
+
+

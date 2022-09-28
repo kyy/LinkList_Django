@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'link.apps.LinkConfig',
     'registration',
 
-    #beautiful forms
+    # beautiful forms
     'crispy_forms',
     'crispy_bootstrap5',
     'widget_tweaks',
