@@ -29,17 +29,7 @@ $(document).ready(function () {
     // "processing": true,   https://pypi.org/project/django-serverside-datatable/
     // "serverSide": true,   pip install django-serverside-datatable
     select: true,
-    buttons: [
-        {
-            extend: 'selected',
-            action: function ( e, dt, node, config ) {
-                var rows = dt.rows( { selected: true } ).count();
-
-                alert( 'There are '+rows+'(s) selected in the table' );
-            }
-        }
-    ],
-
+    order: [[ 1, 'asc' ]],
     responsive: true,
     paging: true,
     autoWidth: false,
