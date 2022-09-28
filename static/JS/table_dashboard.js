@@ -26,8 +26,8 @@ $('#table_db').on( 'click', 'tbody tr', function () {
 
 $(document).ready(function () {
     var table = $('#table_db').DataTable( {
-    // "processing": true,   https://pypi.org/project/django-serverside-datatable/
-    // "serverSide": true,   pip install django-serverside-datatable
+    // "processing": true,   https://pypi.org/project/django-datatables-view/
+    // "serverSide": true,   pip install django-datatables-view
     select: true,
     order: [[ 1, 'asc' ]],
     responsive: true,
