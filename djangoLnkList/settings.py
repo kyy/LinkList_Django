@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     #local
     'link.apps.LinkConfig',
     'registration',
+    'rest_framework_datatables',
 
     # beautiful forms
     'crispy_forms',
@@ -67,6 +68,19 @@ INSTALLED_APPS = [
     'widget_tweaks',
     "bootstrap5",
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework_datatables.renderers.DatatablesRenderer',
+    ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework_datatables.filters.DatatablesFilterBackend',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework_datatables.pagination.DatatablesPageNumberPagination',
+    'PAGE_SIZE': 50,
+}
+
 
 JAZZMIN_UI_TWEAKS = {
     "theme": "sandstone",
