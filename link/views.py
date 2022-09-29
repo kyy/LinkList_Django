@@ -120,9 +120,14 @@ class view_urls_server_json(LoginRequiredMixin, BaseDatatableView):
     order_columns = ['user', 'data', 'URL_long', 'URL_short', 'data', 'name']
 
     def filter_queryset(self, qs):
-        ssearch = self.request.GET.get('ssearch', None)
-        if ssearch:
-            qs = qs.filter(Q(URL_long__istartswith=ssearch) | Q(URL_short__istartswith=ssearch))
+        filter_customer = self.request.GET.get('customer', None)
+        if filter_customer:
+            customer_parts = filter_customer.split(' ')
+            qs_params = None
+            for part in customer_parts:
+                q = Q(name__istartswith=part) | Q(data__istartswith=part)
+                qs_params = qs_params | q if qs_params else q
+            qs = qs.filter(qs_params)
         return qs
 
 

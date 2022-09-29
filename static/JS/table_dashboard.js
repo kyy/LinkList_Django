@@ -1,4 +1,3 @@
-
 function format(d) {
     var dataParsed = JSON.parse(document.getElementById('dataJson').textContent);
     console.log(d);
@@ -15,19 +14,8 @@ function format(d) {
     return html;
 }
 
-$('#table_db').on( 'click', 'tbody tr', function () {
-    if ( table.row( this, { selected: true } ).any() ) {
-        table.row( this ).deselect();
-    }
-    else {
-        table.row( this ).select();
-    }
-} );
-
 $(document).ready(function () {
     var table = $('#table_db').DataTable( {
-    // "processing": true,   https://pypi.org/project/django-datatables-view/
-    // "serverSide": true,   pip install django-datatables-view
     select: true,
     order: [[ 1, 'asc' ]],
     responsive: true,
@@ -39,8 +27,8 @@ $(document).ready(function () {
         [5, 10, 25, 50, -1],
         [5, 10, 25, 50, 'All'],
     ],
-    "columnDefs": [
-        {targets: 0, width: "10px", searchable: false, orderable: false, className: 'dt-control', data: null, defaultContent: '',  },
+    columnDefs: [
+        {targets: 0, width: "10px", searchable: false, orderable: false, className: 'dt-control', data: null, defaultContent: '', },
         {targets: 1, width: "10px", searchable: false, },
         {targets: 2, width: "550px", },
         {targets: 3, width: "50px", searchable: false, orderable: false, },
@@ -48,33 +36,8 @@ $(document).ready(function () {
         {targets: 5, width: "50x", searchable: false, },
         {targets: 6, width: "0px", searchable: false, visible: false, },
     ],
-    language: {
-        decimal:        "",
-        emptyTable:     "No data available in table",
-        info:           "Showing _START_ to _END_ of _TOTAL_ entries",
-        infoEmpty:      "Showing 0 to 0 of 0 entries",
-        infoFiltered:   "(filtered from _MAX_ total entries)",
-        infoPostFix:    "",
-        thousands:      ",",
-        lengthMenu:     "Show _MENU_ entries",
-        loadingRecords: "Loading...",
-        processing:     "",
-        search:         "Search:",
-        zeroRecords:    "No matching records found",
-        paginate: {
-            first:      "First",
-            last:       "Last",
-            next:       "Next",
-            previous:   "Previous"
-        },
-        "aria": {
-            sortAscending:  ": activate to sort column ascending",
-            sortDescending: ": activate to sort column descending"
-        }
-    }
+    language: dt_language,
 });
-
-
 
 // Add event listener for opening and closing details
     $('#table_db tbody').on('click', 'td.dt-control', function () {
@@ -91,9 +54,6 @@ $(document).ready(function () {
             tr.addClass('shown');
         }
     });
-
-
-
 
     // Handle click on "Expand All" button
     $('#btn-show-all-children').on('click', function(){

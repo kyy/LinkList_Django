@@ -12,3 +12,7 @@ C:\Users\Tsaryuk-YL\PycharmProjects\djangoLnkList\locale\en\LC_MESSAGES\
 manage.py makemessages -l en -i venv - скомпилтровать перевод EN
 manage.py compilemessages
 manage.py makemessages --all -i venv - скомпилтровать перевод обязательно указать имя виртуальной среды(venv)
+
+****json-for datatables
+https://pypi.org/project/django-datatables-view/
+pip install django-datatables-view
