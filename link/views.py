@@ -12,10 +12,8 @@ from datetime import datetime
 from django.utils.translation import gettext as _
 from .BLogic import URL_parser
 from django.core import serializers
-from django.contrib.auth.models import User
-from django.db.models import Q
-from django.views.generic import TemplateView
-from django_datatables_view.base_datatable_view import BaseDatatableView
+from rest_framework import viewsets
+from .serializers import URLlistSerializer
 
 
 
@@ -110,25 +108,16 @@ def delete_url(request, url_short):
     return render(request, 'link/delete_confirm.html')
 
 
-class view_urls_server(LoginRequiredMixin, TemplateView):
-    template_name = 'link/dashboard_server.html'
+def view_urls_server(request):
+    return render(request, 'link/dashboard_server.html')
 
 
-class view_urls_server_json(LoginRequiredMixin, BaseDatatableView):
-    model = URL_list
-    columns = ['user', 'data', 'URL_long', 'URL_short', 'data', 'name']
-    order_columns = ['user', 'data', 'URL_long', 'URL_short', 'data', 'name']
+class AlbumViewSet(viewsets.ModelViewSet):
+    queryset = URL_list.objects.all().order_by('name')
+    serializer_class = URLlistSerializer
 
-    def filter_queryset(self, qs):
-        filter_customer = self.request.GET.get('customer', None)
-        if filter_customer:
-            customer_parts = filter_customer.split(' ')
-            qs_params = None
-            for part in customer_parts:
-                q = Q(name__istartswith=part) | Q(data__istartswith=part)
-                qs_params = qs_params | q if qs_params else q
-            qs = qs.filter(qs_params)
-        return qs
+
+
 
 
 

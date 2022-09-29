@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'link.apps.LinkConfig',
     'registration',
     'rest_framework_datatables',
+    'rest_framework',
 
     # beautiful forms
     'crispy_forms',

@@ -9,35 +9,7 @@
 {% endblock %}
 
 {% block jsscript %}
-    <script src="{% static "JS/table_dashboard_server.js" %}"></script>
-    <script type="text/javascript">
-        var DASHBOARD_SERVER_JSON_URL = '{% url "dashboard_server_json" %}';
-        // translations for datatables
 
-        var dt_language = {
-            "emptyTable":     "{% trans "No data available in table" %}",
-            "info":           "{% trans "Showing _START_ to _END_ of _TOTAL_ entries" %}",
-            "infoEmpty":      "{% trans "Showing 0 to 0 of 0 entries" %}",
-            "infoFiltered":   "{% trans "(filtered from _MAX_ total entries)" %}",
-            "infoPostFix":    "",
-            "thousands":      ",",
-            "lengthMenu":     "{% trans "Show _MENU_ entries" %}",
-            "loadingRecords": "{% trans "Loading..." %}",
-            "processing":     "{% trans "Processing..." %}",
-            "search":         "{% trans "Search:" %}",
-            "zeroRecords":    "{% trans "No matching records found" %}",
-            "paginate": {
-                "first":      "{% trans "First" %}",
-                "last":       "{% trans "Last" %}",
-                "next":       "{% trans "Next" %}",
-                "previous":   "{% trans "Previous" %}"
-            },
-            "aria": {
-                "sortAscending":  "{% trans ": activate to sort column ascending" %}",
-                "sortDescending": "{% trans ": activate to sort column descending" %}"
-            }
-        }
-    </script>
 {% endblock %}
 
 {% block content %}
@@ -51,7 +23,7 @@
 <button id="btn-show-all-children" type="button" class="btn btn-sm">Expand All</button>
 <button id="btn-hide-all-children" type="button" class="btn btn-sm">Collapse All</button>
     <hr>
-<table id="table_db" class="table table-hover">
+<table id="table_db" class="table table-hover" style="width:100%" data-server-side="true" data-ajax="/api/urllist/?format=datatables">
   <thead>
     <tr>
 
@@ -67,7 +39,11 @@
 
 <hr>
     {% translate 'Если что-то не так, поробуйте'%} <a href={% url 'dashboard' %}>front-side</a>.
-
+ <script>
+      $(document).ready(function() {
+          $('#table_db').DataTable();
+      });
+  </script>
 {% endblock %}
 
 
