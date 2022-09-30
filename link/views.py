@@ -6,6 +6,8 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from ratelimit.decorators import ratelimit
+from rest_framework.permissions import IsAuthenticated
+
 from .forms import URL_listForm
 from .models import URL_list
 from datetime import datetime
@@ -112,9 +114,18 @@ def view_urls_server(request):
     return render(request, 'link/dashboard_server.html')
 
 
-class AlbumViewSet(viewsets.ModelViewSet):
-    queryset = URL_list.objects.all().order_by('name')
+class View_urls_server_class(viewsets.ModelViewSet):
     serializer_class = URLlistSerializer
+    queryset = URL_list.objects.order_by('name')
+
+    def get_queryset(self):
+        queryset = URL_list.objects.filter(user=self.request.user)
+        return queryset
+
+    def perform_create(self, serializer):
+        if serializer.is_valid():
+            serializer.save(user=self.request.user)
+
 
 
 
