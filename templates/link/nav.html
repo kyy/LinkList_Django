@@ -21,8 +21,10 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ user.username}}</a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="{% url 'dashboard' %}">{% translate 'личный кабинет' %}</a></li>
+            <li><a class="dropdown-item" href="/api/">API</a></li>
+            <li><a class="dropdown-item" href="{% url 'password_change' %}">{% translate 'изменить пароль' %}</a></li>
             <li><a class="dropdown-item" href="{% url 'logout' %}">{% translate 'выйти' %}</a></li>
-            <li><a class="dropdown-item" href="{% url 'password_change' %}">{% translate 'изменить пароль' %}</a></li></ul>
+          </ul>
               {% else %}
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{% translate 'вход | регистрация' %}</a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

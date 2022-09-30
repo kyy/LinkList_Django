@@ -116,12 +116,14 @@ def view_urls_server(request):
 
 class View_urls_server_class(viewsets.ModelViewSet):
     serializer_class = URLlistSerializer
-    queryset = URL_list.objects.order_by('name')
+    queryset = URL_list.objects
 
+    # filter by current user
     def get_queryset(self):
-        queryset = URL_list.objects.filter(user=self.request.user)
+        queryset = URL_list.objects.filter(user=self.request.user).order_by('name')
         return queryset
 
+    # send current user
     def perform_create(self, serializer):
         if serializer.is_valid():
             serializer.save(user=self.request.user)
