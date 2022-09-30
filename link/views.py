@@ -1,13 +1,8 @@
-import json
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from ratelimit.decorators import ratelimit
-from rest_framework.permissions import IsAuthenticated
-
 from .forms import URL_listForm
 from .models import URL_list
 from datetime import datetime
@@ -18,10 +13,8 @@ from rest_framework import viewsets
 from .serializers import URLlistSerializer
 
 
-
 now = datetime.now()
 now = now.strftime("%Y-%m-%d")
-
 
 @ratelimit(method='POST', block=True, rate='10/m', key='user')
 @login_required
