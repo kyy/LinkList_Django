@@ -9,11 +9,34 @@
 {% endblock %}
 
 {% block jsscript %}
-        <script>
-      $(document).ready(function() {
-          $('#table').DataTable();
-      });
-  </script>
+
+    <script src={% static "JS/table_dashboard_server.js" %}></script>
+    <script type="text/javascript">
+        // translations for datatables
+        var dt_language = {
+            "emptyTable":     "{% trans "No data available in table" %}",
+            "info":           "{% trans "Showing _START_ to _END_ of _TOTAL_ entries" %}",
+            "infoEmpty":      "{% trans "Showing 0 to 0 of 0 entries" %}",
+            "infoFiltered":   "{% trans "(filtered from _MAX_ total entries)" %}",
+            "infoPostFix":    "",
+            "thousands":      ",",
+            "lengthMenu":     "{% trans "Show _MENU_ entries" %}",
+            "loadingRecords": "{% trans "Loading..." %}",
+            "processing":     "{% trans "Processing..." %}",
+            "search":         "{% trans "Search:" %}",
+            "zeroRecords":    "{% trans "No matching records found" %}",
+            "paginate": {
+                "first":      "{% trans "First" %}",
+                "last":       "{% trans "Last" %}",
+                "next":       "{% trans "Next" %}",
+                "previous":   "{% trans "Previous" %}"
+            },
+            "aria": {
+                "sortAscending":  "{% trans ": activate to sort column ascending" %}",
+                "sortDescending": "{% trans ": activate to sort column descending" %}"
+            }
+        }
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -28,19 +51,22 @@
 <button id="btn-show-all-children" type="button" class="btn btn-sm">Expand All</button>
 <button id="btn-hide-all-children" type="button" class="btn btn-sm">Collapse All</button>
     <hr>
-<table id="table" class="table table-hover" style="width:100%" data-server-side="true" data-ajax="/api/urls/?format=datatables">
+<table id="table_db" class="table table-hover">
   <thead>
     <tr>
-      <th data-data="name">{% translate 'Имя' %}</th>
-      <th data-data="URL_long">{% translate 'Внести изменения' %}</th>
-      <th data-data="URL_short">{% translate 'Удаление' %}</th>
-      <th data-data="data">{% translate 'Дата создания' %}</th>
+      <th></th>
+      <th>#</th>
+      <th>{% translate 'Имя' %}</th>
+      <th>{% translate 'Внести изменения' %}</th>
+      <th>{% translate 'Удаление' %}</th>
+      <th>{% translate 'Дата создания' %}</th>
+      <th>{% translate 'Ссылки' %}</th>
     </tr>
   </thead>
 </table>
 
 <hr>
-    {% translate 'Если что-то не так, поробуйте'%} <a href={% url 'dashboard' %}>front-side</a>.
+    {% translate 'Если что-то не так, попробуйте'%} <a href={% url 'dashboard' %}>front-side</a>.
 
 {% endblock %}
 

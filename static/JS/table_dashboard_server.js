@@ -1,19 +1,85 @@
+function format(d) {
+    console.log(d);
+    var html ='<table class="table">';
+    html+= '<thead>';
+    html+= '<tr><th scope="col">Записи</th>';
+    html+= '</thead>';
+    html+= '<tbody>';
+    html+= '<tr>';
+    html+= '<td>'+ d.URL_long +'</td>';
+    html+= '</tr>';
+    html+= '</tbody>';
+    return html;
+}
 
-$(document).ready(function() {
-    var dt_table = $('.table').dataTable({
-        ajax: DASHBOARD_SERVER_JSON_URL,
-        searching: true,
-        processing: true,
-        serverSide: true,
-        stateSave: true,
-        language: dt_language,  // global variable defined in html
-        order: [[ 0, "desc" ]],
-        lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'all']],
-        columns: [
-            {data: 'name', orderable: true, searchable: true, className: "center"},
-            {data: 'name', orderable: true, searchable: true, className: "center"},
-            {data: 'data', orderable: true, searchable: true, className: "center"},
-            {data: 'data', orderable: true, searchable: true, className: "center"},
-        ],
+$(document).ready(function () {
+    var table = $('#table_db').DataTable( {
+    serverSide: true,
+    ajax: '/api/urls/?format=datatables',
+    select: true,
+    order: [[ 1, 'asc' ]],
+    responsive: true,
+    paging: true,
+    autoWidth: false,
+    searching: true,
+    ordering: true,
+    lengthMenu: [
+        [5, 10, 25, 50, -1],
+        [5, 10, 25, 50, 'All'],
+    ],
+    columnDefs: [
+        {data: null, targets: 0, width: "10px", searchable: false, orderable: false, className: 'dt-control', defaultContent: '', },
+        {data: null, targets: 1, width: "10px", searchable: false, defaultContent: ''},
+        {data: 'name', targets: 2, width: "550px", },
+        {data: null, targets: 3, width: "50px", searchable: false, orderable: false, defaultContent: 'edit'},
+        {data: null, targets: 4, width: "50x", searchable: false, orderable: false, defaultContent: 'delete'},
+        {data: 'data', targets: 5, width: "50x", searchable: false, },
+        {data: 'URL_long', targets: 6, width: "0px", searchable: false, visible: false, },
+    ],
+    language: dt_language,
+});
+
+// Add event listener for opening and closing details
+    $('#table_db tbody').on('click', 'td.dt-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        } else {
+            // Open this row
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+        }
+    });
+
+    // Handle click on "Expand All" button
+    $('#btn-show-all-children').on('click', function(){
+        // Enumerate all rows
+        table.rows().every(function(){
+            // If row has details collapsed
+            if(!this.child.isShown()){
+                // Open this row
+                this.child(format(this.data())).show();
+                $(this.node()).addClass('shown');
+            }
+        });
+    });
+
+    // Handle click on "Collapse All" button
+    $('#btn-hide-all-children').on('click', function(){
+        // Enumerate all rows
+        table.rows().every(function(){
+            // If row has details expanded
+            if(this.child.isShown()){
+                // Collapse row details
+                this.child.hide();
+                $(this.node()).removeClass('shown');
+            }
+        });
     });
 });
+
+/* Formatting function for row details - modify as you need */

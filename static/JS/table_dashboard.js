@@ -4,7 +4,7 @@ function format(d) {
     console.log(dataParsed);
     var html ='<table class="table">';
     html+= '<thead>';
-    html+= '<tr><th scope="col">Имя</th>';
+    html+= '<tr><th scope="col">Записи</th>';
     html+= '</thead>';
     html+= '<tbody>';
     html+= '<tr>';
