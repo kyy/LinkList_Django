@@ -104,12 +104,17 @@ def delete_url(request, url_short):
 
 
 def view_urls_server(request):
-    return render(request, 'link/dashboard_server.html')
+    data = serializers.serialize('json', URL_list.objects.filter(user=request.user))
+    return render(request, 'link/dashboard_server.html', {
+        'data': data,
+    })
 
 
 class View_urls_server_class(viewsets.ModelViewSet):
     serializer_class = URLlistSerializer
     queryset = URL_list.objects
+    # additional sorting with more dubplicates on page view
+    # datatables_additional_order_by = 'rank'
 
     # filter by current user
     def get_queryset(self):
